@@ -1,9 +1,9 @@
 package com.example.demo1;
 
 public class MetaData {
-	String alias;
-	String sourceField;
-	String type;
+	protected String alias;
+	protected String sourceField;
+	protected String type;
 	/**
 	 * @param alias
 	 * @param sourceField

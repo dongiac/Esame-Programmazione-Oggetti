@@ -3,11 +3,10 @@ package com.example.demo1;
 import java.util.Collection;
 
 public abstract class Data<T> {
-	Collection<T> set;
-	Utils util;
+	Collection<T> set; //bisogna far ereditare collection<T> ed eliminare i set di Radio e MetaData per poter usare getData() ovviamente... 
 	
 	public Collection<T> getData() {
-		return set; //sarà sufficiente fare un casting nel main o dove serve (si spera basti kek)
+		return this.set; //sarà sufficiente fare un casting nel main o dove serve (si spera basti kek)
 	}
 
 	/* (non-Javadoc)
@@ -15,8 +14,9 @@ public abstract class Data<T> {
 	 */
 	@Override
 	public String toString() {
-		return "Data:" + set + "]";
+		return "Data:" + this.set + "]";
 	}
 	
+	public abstract void parseData();
 	
 }

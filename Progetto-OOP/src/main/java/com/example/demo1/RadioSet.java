@@ -4,15 +4,20 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class RadioSet extends Data<RadioStation> implements Parsable<RadioStation>, Filter<RadioSet, Object> {
-	public RadioSet(HashSet<RadioStation> set) {
-		super.set = set;
-	}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+public class RadioSet extends Data<RadioStation> implements Filter<RadioSet, Object> {
+	
+	 public RadioSet() {
+		 super.set = new HashSet<RadioStation>();
+	 }
+	
 	
 	@Override
-	public void dataParser(Collection<RadioStation> col) {
+	public void parseData() {
 		try {
-			util.parseCSV((HashSet<RadioStation>) col);
+			Utils.parseCSV((HashSet<RadioStation>) super.set);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -25,7 +25,7 @@ public class Utils {
 
 	public static final String COMMA_DELIMITER = ";";
 
-	public static HashSet<RadioStation> parseCSV(HashSet<RadioStation> set) throws IOException {
+	public static void parseCSV(HashSet<RadioStation> set) throws IOException {
 		FileReader a = new FileReader("t1.csv");
 		BufferedReader in = new BufferedReader(a);
 		String line = "";
@@ -94,7 +94,7 @@ public class Utils {
 			}
 
 		}
-		return set;
+		//return set;
 	}
 
 	public static String commaConverter(String a) {

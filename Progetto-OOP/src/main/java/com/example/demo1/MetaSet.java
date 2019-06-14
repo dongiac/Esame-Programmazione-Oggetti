@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class MetaSet extends Data <MetaData> implements Parsable<MetaData> {
+import org.springframework.stereotype.Component;
+
+
+public class MetaSet extends Data <MetaData> {
 	public MetaSet(HashSet<MetaData> set) {
 		super.set = set;
 	}
 	
 	@Override
-	public void dataParser(Collection<MetaData> col) {
+	public void parseData() {
 		try {
-			util.parseMetaData((HashSet<MetaData>)col);
+			Utils.parseMetaData((HashSet<MetaData>)super.set);
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,18 +1,18 @@
 package com.example.demo1;
 
 public class RadioStation {
-	String operator;
-	String ID;
-	String type;
-	String address;
-	String lat;
-	String lon;
-	String alt;
-	double channel;
-	String bouquet;
-	double erpMaxH;
-	double erpMaxV;
-	double freq;
+	protected String operator;
+	protected String ID;
+	protected String type;
+	protected String address;
+	protected String lat;
+	protected String lon;
+	protected String alt;
+	protected double channel;
+	protected String bouquet;
+	protected double erpMaxH;
+	protected double erpMaxV;
+	protected double freq;
 	/**
 	 * @return the operator
 	 */
