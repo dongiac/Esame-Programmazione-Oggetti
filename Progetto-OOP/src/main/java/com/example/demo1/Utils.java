@@ -1,32 +1,31 @@
-package com.example.demo;
-
-import org.hibernate.metadata.ClassMetadata;
+package com.example.demo1;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+
 import java.nio.file.Paths;
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-public class CSV {
-	public final static String COMMA_DELIMITER = ";";
+public class Utils {
 
-	public static void parseCSV(Set<RadioStation> set) throws IOException {
+	public static final String COMMA_DELIMITER = ";";
+
+	public static HashSet<RadioStation> parseCSV(HashSet<RadioStation> set) throws IOException {
 		FileReader a = new FileReader("t1.csv");
 		BufferedReader in = new BufferedReader(a);
 		String line = "";
@@ -93,8 +92,9 @@ public class CSV {
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("errore nel file, salto la riga");
 			}
-		}
 
+		}
+		return set;
 	}
 
 	public static String commaConverter(String a) {
@@ -158,24 +158,23 @@ public class CSV {
 		return data;
 	}
 
-	public static void stampaSet(Set<RadioStation> a) {
-		int counter = 1;
-		for (RadioStation a1 : a) {
-			System.out.println(counter + " " + a1.toString());
-			counter++;
+	public static HashSet<MetaData> parseMetaData(HashSet<MetaData> set) throws ClassNotFoundException, IOException {
+		Class cls = Class.forName("com.example.demo1.RadioStation");
+		FileReader file = new FileReader("t1.csv");
+		BufferedReader in = new BufferedReader(file);
+		String line = "";
+		line = in.readLine();
+		String[] info = line.split(";");
+		java.lang.reflect.Field[] fieldlist = cls.getDeclaredFields();
+		MetaData metadata;
+		for (int i = 0; i < info.length; i++) {
+			Field fld = fieldlist[i];
+			metadata = new MetaData();
+			metadata.setAlias(fld.getName());
+			metadata.setType(fld.getType().getSimpleName());
+			metadata.setSourceField(info[i]);
+			set.add(metadata);
 		}
+		return set;
 	}
-
-	public static ArrayList<MetaData> getMetaData(ArrayList<RadioStation> RS) throws IOException {
-		ArrayList<MetaData> a = new ArrayList<MetaData>();
-		
-		MetaData m;
-		for(RadioStation o: RS ) {
-			m = new MetaData();
-			
-			a.add(m);
-		}
-		return a;
-	}
-		
 }

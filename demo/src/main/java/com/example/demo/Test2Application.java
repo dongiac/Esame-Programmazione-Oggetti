@@ -17,6 +17,7 @@ import org.hibernate.metadata.ClassMetadata;
 public class Test2Application {
 
 	public static void main(String[] args) throws Exception {
+		HashSet<RadioStation> set = new HashSet<RadioStation>();
 		
 		String url = "https://www.dati.gov.it/api/3/action/package_show?id=7fae4996-02e1-4a80-8794-9ec22454041b";
 		String data = "";
@@ -24,7 +25,7 @@ public class Test2Application {
 		data = CSV.jsonToString(url); // Converte il
 		csvUrl = CSV.getCSVUrl(data);
 		CSV.download(csvUrl); // scarica il csv
-		System.out.println(data);
+		
 		SpringApplication.run(Test2Application.class, args);
 
 	}

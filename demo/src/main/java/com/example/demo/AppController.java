@@ -14,16 +14,17 @@ public class AppController {
 	@RequestMapping("/data")
 	@ResponseBody
 	public HashSet<RadioStation> getData() throws IOException {
-		HashSet<RadioStation> set = new HashSet<RadioStation>();
+		HashSet<RadioStation> set = new HashSet();
 		CSV.parseCSV(set);
 		return set;
 	}
+
 	@RequestMapping("/Metadata")
 	@ResponseBody
-	public ArrayList<MetaData> getMetaData() throws ClassNotFoundException, IOException{
+	public ArrayList<MetaData> getMetaData() throws ClassNotFoundException, IOException {
 		ArrayList<MetaData> m = new ArrayList<MetaData>();
 		m = MetaData.getAllMetaData();
 		return m;
 	}
-	
+
 }
