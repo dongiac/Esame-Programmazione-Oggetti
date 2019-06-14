@@ -17,7 +17,10 @@ public class SystemConfig {
 	public RadioSet getRadioSet() {
 		return new RadioSet();
 	}
-
+	
+	@Bean MetaSet getMetaSet() {
+		return new MetaSet();
+	}
 	@Bean
 	public RadioStation getRadio() {
 		return new RadioStation();

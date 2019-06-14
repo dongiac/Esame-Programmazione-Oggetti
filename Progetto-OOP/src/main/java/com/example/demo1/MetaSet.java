@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 
 public class MetaSet extends Data <MetaData> {
-	public MetaSet(HashSet<MetaData> set) {
-		super.set = set;
+	public MetaSet() {
+		super.set = new HashSet<MetaData>();
 	}
 	
 	@Override

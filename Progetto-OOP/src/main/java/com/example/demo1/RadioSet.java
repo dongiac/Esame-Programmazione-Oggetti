@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 public class RadioSet extends Data<RadioStation> implements Filter<RadioSet, Object> {
-	
-	 public RadioSet() {
-		 super.set = new HashSet<RadioStation>();
-	 }
-	
-	
+
+	public RadioSet() {
+		super.set = new HashSet<RadioStation>();
+	}
+
 	@Override
 	public void parseData() {
 		try {
