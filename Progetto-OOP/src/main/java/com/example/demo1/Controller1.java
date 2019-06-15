@@ -25,8 +25,10 @@ public class Controller1 extends ProgettoOopApplication {
 		 */
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SystemConfig.class);
 		RadioSet a = ctx.getBean(RadioSet.class);
-		a.parseData();                                    //non riesco a fare il parsing dei dati prima della chiamata get, non risulta visibile e un calcolo del genere 
-															//in grandi dimensioni potrebbe essere un problema.
+		a.parseData();
+		// non riesco a fare il parsing dei dati prima della chiamata get, non risulta
+		// visibile e un calcolo del genere
+		// in grandi dimensioni potrebbe essere un problema.
 		return (HashSet<RadioStation>) a.getData();
 	}
 

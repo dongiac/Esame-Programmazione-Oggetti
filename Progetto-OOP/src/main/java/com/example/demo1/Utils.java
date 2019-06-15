@@ -31,67 +31,19 @@ public class Utils {
 		String line = "";
 		String[] info;
 		in.readLine(); // skippa la prima riga
-
-		String operator = "n.d.";
-		String ID = "n.d.";
-		String type = "n.d.";
-		String address = "n.d.";
-		String lat = "n.d.";
-		String lon = "n.d.";
-		String alt = "n.d.";
-		double channel = 0;
-		String bouquet = "n.d.";
-		double erpMaxH = 0;
-		double erpMaxV = 0;
-		double freq = 0;
+		
 		RadioStation r;
 
 		while ((line = in.readLine()) != null) {
 
 			info = line.split(COMMA_DELIMITER);
-			try {
-
-				operator = info[0];
-				ID = info[1];
-				type = info[2];
-				address = info[3];
-				lat = info[4];
-				lon = info[5];
-				alt = info[6];
-				bouquet = info[8];
-				try {
-					channel = Double.parseDouble(commaConverter(info[7]));
-				} catch (NumberFormatException e) {
-					channel = 0;
-				}
-				try {
-					erpMaxH = Double.parseDouble(commaConverter(info[9]));
-				} catch (NumberFormatException e) {
-					erpMaxH = 0;
-
-				}
-				try {
-					erpMaxV = Double.parseDouble(commaConverter(info[10]));
-				} catch (NumberFormatException e) {
-					erpMaxV = 0;
-
-				}
-				try {
-					freq = Double.parseDouble(commaConverter(info[11]));
-				} catch (NumberFormatException e) {
-					freq = 0;
-
-				}
-				try {
-				} catch (NumberFormatException e) {
-				} finally {
-					r = new RadioStation(operator, ID, type, address, lat, lon, alt, channel, bouquet, erpMaxH, erpMaxV,
-							freq);
-					set.add(r);
-				}
+			try { 	
+				r = new RadioStation(info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],info[10],info[11]);
+				set.add(r);
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("errore nel file, salto la riga");
 			}
+			
 
 		}
 		// return set;
@@ -132,7 +84,7 @@ public class Utils {
 	}
 
 	public static void download(String url) throws Exception {
-		int count = 0;
+		
 		try (InputStream in = URI.create(url).toURL().openStream()) {
 			Files.copy(in, Paths.get("t1.csv"));
 		} catch (FileAlreadyExistsException a) {
