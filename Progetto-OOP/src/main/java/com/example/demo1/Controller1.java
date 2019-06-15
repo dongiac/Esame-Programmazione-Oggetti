@@ -12,32 +12,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableAutoConfiguration
-public class Controller1 extends ProgettoOopApplication {
+public class Controller1 {
+	ApplicationContext ctx1 = new AnnotationConfigApplicationContext(SystemConfig.class);
+	RadioSet rs = ctx1.getBean(RadioSet.class);
+	MetaSet ms = ctx1.getBean(MetaSet.class); //gli oggetti vengono istanziati, i dati parsati da costruttore, e i relativi dati recuperati con get 
 
 	@RequestMapping("/data")
 	@ResponseBody
 	public HashSet<RadioStation> getRadioSet() throws IOException {
-		/*
-		 * HashSet<RadioStation> set = new HashSet<RadioStation>(); //il massimo che si
-		 * può fare sembra sia creare un contesto col quale invocare radioset (parsando
-		 * nel costruttore i dati...) RadioSet Rset = new RadioSet();
-		 * Rset.parseData(set); return (HashSet<RadioStation>)Rset.getData();
-		 */
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SystemConfig.class);
-		RadioSet a = ctx.getBean(RadioSet.class);
-		a.parseData();
-		// non riesco a fare il parsing dei dati prima della chiamata get, non risulta
-		// visibile e un calcolo del genere
-		// in grandi dimensioni potrebbe essere un problema.
-		return (HashSet<RadioStation>) a.getData();
+		return (HashSet<RadioStation>) rs.getData();
 	}
 
 	@RequestMapping("/metadata")
 	@ResponseBody
 	public HashSet<MetaData> getMetaSet() throws IOException, ClassNotFoundException {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SystemConfig.class);
-		MetaSet ms = ctx.getBean(MetaSet.class);
-		ms.parseData();
 		return (HashSet<MetaData>) ms.getData();
 	}
 }

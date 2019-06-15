@@ -208,10 +208,10 @@ public class RadioStation {
 	 * @param erpMaxV
 	 * @param freq
 	 */
-	public RadioStation(String operator, String iD, String type, String address, String lat, String lon, String alt,
+	public RadioStation(String operator, String ID, String type, String address, String lat, String lon, String alt,
 			String channel, String bouquet, String erpMaxH, String erpMaxV, String freq) {
 		this.operator = operator;
-		ID = iD;
+		this.ID = ID;
 		this.type = type;
 		this.address = address;
 		this.lat = lat;

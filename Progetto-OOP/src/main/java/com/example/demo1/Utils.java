@@ -12,9 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-
 import java.nio.file.Paths;
-
 import java.util.HashSet;
 
 import org.json.simple.JSONArray;
@@ -31,19 +29,20 @@ public class Utils {
 		String line = "";
 		String[] info;
 		in.readLine(); // skippa la prima riga
-		
+
 		RadioStation r;
 
 		while ((line = in.readLine()) != null) {
 
 			info = line.split(COMMA_DELIMITER);
-			try { 	
-				r = new RadioStation(info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],info[10],info[11]);
+			try {
+
+				r = new RadioStation(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8],
+						info[9], info[10], info[11]);
 				set.add(r);
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("errore nel file, salto la riga");
 			}
-			
 
 		}
 		// return set;
@@ -84,11 +83,12 @@ public class Utils {
 	}
 
 	public static void download(String url) throws Exception {
-		
+
 		try (InputStream in = URI.create(url).toURL().openStream()) {
+			System.out.println("salvo con nome 't1.csv'");
 			Files.copy(in, Paths.get("t1.csv"));
 		} catch (FileAlreadyExistsException a) {
-			System.out.println("il file c'è già");
+			System.out.println("il file con il nome t1.csv verrà sovrascritto");
 		}
 	}
 
@@ -111,7 +111,7 @@ public class Utils {
 	}
 
 	public static HashSet<MetaData> parseMetaData(HashSet<MetaData> set) throws ClassNotFoundException, IOException {
-		Class cls = Class.forName("com.example.demo1.RadioStation");
+		Class cls = Class.forName("com.example.demo1.RadioStation"); //sarebbe meglio generalizzarla così da prendere metadata eventualmente da ogni set di oggetti!!!
 		FileReader file = new FileReader("t1.csv");
 		BufferedReader in = new BufferedReader(file);
 		String line = "";

@@ -1,15 +1,14 @@
 package com.example.demo1;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashSet;
-
-import org.springframework.stereotype.Component;
 
 
 public class MetaSet extends Data <MetaData> {
-	public MetaSet() {
+	public MetaSet() throws ClassNotFoundException, IOException {
+		System.out.println("Ho creato ottenuto i metadati...");
 		super.set = new HashSet<MetaData>();
+		parseData();
 	}
 	
 	@Override
@@ -24,3 +23,4 @@ public class MetaSet extends Data <MetaData> {
 	}
 	
 }
+	
