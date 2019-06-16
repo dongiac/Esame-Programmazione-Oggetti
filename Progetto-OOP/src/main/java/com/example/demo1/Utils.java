@@ -88,7 +88,7 @@ public class Utils {
 			System.out.println("salvo con nome 't1.csv'");
 			Files.copy(in, Paths.get("t1.csv"));
 		} catch (FileAlreadyExistsException a) {
-			System.out.println("il file con il nome t1.csv verrà sovrascritto");
+			System.out.println("il file con il nome t1.csv verrÃƒÂ  sovrascritto");
 		}
 	}
 
@@ -111,7 +111,9 @@ public class Utils {
 	}
 
 	public static HashSet<MetaData> parseMetaData(HashSet<MetaData> set) throws ClassNotFoundException, IOException {
-		Class cls = Class.forName("com.example.demo1.RadioStation"); //sarebbe meglio generalizzarla così da prendere metadata eventualmente da ogni set di oggetti!!!
+		Class cls = Class.forName("com.example.demo1.RadioStation"); // sarebbe meglio generalizzarla cosÃƒÂ¬ da prendere
+																		// metadata eventualmente da ogni set di
+																		// oggetti!!!
 		FileReader file = new FileReader("t1.csv");
 		BufferedReader in = new BufferedReader(file);
 		String line = "";

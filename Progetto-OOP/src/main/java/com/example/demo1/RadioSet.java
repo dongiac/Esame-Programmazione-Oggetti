@@ -1,19 +1,32 @@
 package com.example.demo1;
 
-import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RadioSet extends Data<RadioStation> implements Filter<RadioSet, Object> {
+public class RadioSet extends Data<RadioStation> implements Filter<RadioStation, Object> {
+	@Autowired
+	FilterUtils<RadioStation> utilities;
 	
-	public RadioSet() throws IOException {
+	
+	public RadioSet() {
+		
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "RadioSet [set=" + set + "]";
+	}
+
+	@Override
+	public HashSet<RadioStation> filterField(Collection<RadioStation> set, String fieldName, String operator,
+			Object value) {
+		// TODO Auto-generated method stub
+		return  (HashSet<RadioStation>)utilities.select((HashSet<RadioStation>)set, fieldName, operator, value);
 	}
 
 	/*@Override

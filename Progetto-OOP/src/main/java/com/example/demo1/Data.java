@@ -27,7 +27,7 @@ public class Data<T> {
 	}
 
 	public Collection<T> getData() {
-		return this.set; // sarà sufficiente fare un cast dove serve
+		return this.set; // sarÃƒÂ  sufficiente fare un cast dove serve
 	}
 
 	
