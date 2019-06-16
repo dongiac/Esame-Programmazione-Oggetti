@@ -1,16 +1,14 @@
 package com.example.demo1;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashSet;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
+@Component
 public class RadioSet extends Data<RadioStation> implements Filter<RadioSet, Object> {
+
 	public RadioSet() throws IOException {
-		System.out.println("ho parsato e caricati i dati...");
-		super.set = new HashSet<RadioStation>();
-		parseData();
 	}
 	
 	
@@ -25,7 +23,7 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioSet, Obj
 	@Override
 	public void parseData() {
 		try {
-			Utils.parseCSV((HashSet<RadioStation>) super.set);
+			Utils.parseCSV((HashSet<RadioStation>) this.set);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

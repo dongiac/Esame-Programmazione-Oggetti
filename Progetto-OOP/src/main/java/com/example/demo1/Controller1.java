@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Controller1 {
 	ApplicationContext ctx1 = new AnnotationConfigApplicationContext(SystemConfig.class);
 	RadioSet rs = ctx1.getBean(RadioSet.class);
-	MetaSet ms = ctx1.getBean(MetaSet.class); //gli oggetti vengono istanziati, i dati parsati da costruttore, e i relativi dati recuperati con get 
-
+	MetaSet ms = ctx1.getBean(MetaSet.class); //gli oggetti vengono istanziati, iniettati, e i relativi dati recuperati con get 
+	
+	
 	@RequestMapping("/data")
 	@ResponseBody
 	public HashSet<RadioStation> getRadioSet() throws IOException {
 		return (HashSet<RadioStation>) rs.getData();
-	}
+	}																//la costruzione 
+																	//e parsing avvengono all'avvio
 
 	@RequestMapping("/metadata")
 	@ResponseBody
@@ -29,14 +31,3 @@ public class Controller1 {
 		return (HashSet<MetaData>) ms.getData();
 	}
 }
-
-/*
- * metodo di riserva, degli inizi prima del futuro disastro.
- * 
- * @RequestMapping("/metadata")
- * 
- * @ResponseBody public HashSet<MetaData> getMetaSet() throws IOException,
- * ClassNotFoundException { HashSet<MetaData> set = new HashSet<MetaData>();
- * MetaSet ms = new MetaSet(set); ms.parseData(set); return
- * (HashSet<MetaData>)ms.getData(); }
- */

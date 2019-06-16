@@ -1,9 +1,14 @@
 package com.example.demo1;
 
 import java.util.Collection;
+import java.util.HashSet;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 public abstract class Data<T> {
-	Collection<T> set; 
+	@Autowired
+	HashSet<T> set; 
 
 	public Collection<T> getData() {
 		return this.set; // sarà sufficiente fare un cast dove serve
@@ -17,6 +22,12 @@ public abstract class Data<T> {
 	@Override
 	public String toString() {
 		return "Data:" + this.set + "]";
+	}
+
+	/**
+	 * 
+	 */
+	public Data() {
 	}
 
 	public abstract void parseData();

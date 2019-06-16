@@ -18,6 +18,7 @@ public class ProgettoOopApplication {
 		data = Utils.jsonToString(url); // Converte il
 		csvUrl = Utils.getCSVUrl(data);
 		Utils.download(csvUrl); // scarica il csv
+		
 		SpringApplication.run(ProgettoOopApplication.class, args);
 
 	}
