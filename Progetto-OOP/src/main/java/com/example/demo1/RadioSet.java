@@ -3,14 +3,12 @@ package com.example.demo1;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RadioSet extends Data<RadioStation> implements Filter<RadioStation, Object> {
-	@Autowired
-	FilterUtils<RadioStation> utilities;
-	
+	/* @Autowired
+	FilterUtils<RadioStation> utils; */
 	
 	public RadioSet() {
 		
@@ -26,7 +24,7 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation,
 	public HashSet<RadioStation> filterField(Collection<RadioStation> set, String fieldName, String operator,
 			Object value) {
 		// TODO Auto-generated method stub
-		return  (HashSet<RadioStation>)utilities.select((HashSet<RadioStation>)set, fieldName, operator, value);
+		return  (HashSet<RadioStation>)this.utils.select((HashSet<RadioStation>)set, fieldName, operator, value);
 	}
 
 	/*@Override

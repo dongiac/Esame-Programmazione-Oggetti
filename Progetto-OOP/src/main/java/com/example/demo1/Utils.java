@@ -38,7 +38,7 @@ public class Utils {
 			try {
 
 				r = new RadioStation(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8],
-						info[9], info[10], info[11]);
+						Utils.commaConverter(info[9]), Utils.commaConverter(info[10]), Utils.commaConverter(info[11]));
 				set.add(r);
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("errore nel file, salto la riga");

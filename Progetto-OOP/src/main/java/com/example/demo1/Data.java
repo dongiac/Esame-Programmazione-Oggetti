@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Data<T> {
 	@Autowired
 	Collection<T> set; 
-
+	@Autowired
+	FilterUtils<T> utils;
+	
 	
 	/*
 	 * (non-Javadoc)
@@ -24,10 +26,12 @@ public class Data<T> {
 	 * 
 	 */
 	public Data() {
+
+
 	}
 
 	public Collection<T> getData() {
-		return this.set; // sarÃƒÂ  sufficiente fare un cast dove serve
+		return this.set; // sarà sufficiente fare un cast dove serve
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,14 +18,14 @@ public class Controller1 {
 	ApplicationContext ctx1 = new AnnotationConfigApplicationContext(SystemConfig.class);
 	RadioSet rs = ctx1.getBean(RadioSet.class);
 	MetaSet ms = ctx1.getBean(MetaSet.class); // gli oggetti vengono istanziati, iniettati, e i relativi dati recuperati
-												// con get
+											  // con get
 
 	@RequestMapping("/data")
 	@ResponseBody
 	public HashSet<RadioStation> getRadioSet() throws IOException {
 		return (HashSet<RadioStation>) rs.getData();
 	} // la costruzione
-		// e parsing avvengono all'avvio
+	// e parsing avvengono all'avvio
 
 	@RequestMapping("/metadata")
 	@ResponseBody
@@ -33,11 +34,19 @@ public class Controller1 {
 		return (HashSet<MetaData>) ms.getData();
 	}
 
-	@RequestMapping("/filtraggio")
+	@RequestMapping("/filter")
 	@ResponseBody
 	public HashSet<RadioStation> filtraggio(@RequestParam("fieldName") String fieldName,
 			@RequestParam("operatore") String operatore, @RequestParam("valore") Object value) {
 		return (HashSet<RadioStation>) rs.filterField(rs.set, fieldName, operatore, value);
 	}
-
+	
+	@RequestMapping("/stats")
+	@ResponseBody
+	public MathStatsResults getMathStats(@RequestParam("fieldName") String fieldName) {
+		MathStatsResults stats = new MathStatsResults();
+		stats.setField(fieldName);
+		stats.compute(rs.set, fieldName);
+		return stats;
+	}
 }

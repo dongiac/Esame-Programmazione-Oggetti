@@ -34,7 +34,8 @@ public class SystemConfig {
 	}
 
 	@Bean
-	public FilterUtils<RadioStation> utilities() {
-		return new FilterUtils<RadioStation>();
+	public FilterUtils utilities() {
+		System.out.println("creo Utils");
+		return new FilterUtils();
 	}
 }

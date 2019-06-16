@@ -33,6 +33,7 @@ public class FilterUtils<T> {
 	}
 
 	public Collection<T> select(HashSet<T> src, String fieldName, String operator, Object value) {
+		
 		Collection<T> out = new HashSet<T>();
 		for (T item : src) {
 			try {
