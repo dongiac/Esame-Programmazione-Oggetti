@@ -1,19 +1,15 @@
 package com.example.demo1;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public abstract class Data<T> {
+public class Data<T> {
 	@Autowired
-	HashSet<T> set; 
+	Collection<T> set; 
 
-	public Collection<T> getData() {
-		return this.set; // sarà sufficiente fare un cast dove serve
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -30,6 +26,11 @@ public abstract class Data<T> {
 	public Data() {
 	}
 
-	public abstract void parseData();
+	public Collection<T> getData() {
+		return this.set; // sarà sufficiente fare un cast dove serve
+	}
+
+	
+	//public abstract void parseData();
 
 }

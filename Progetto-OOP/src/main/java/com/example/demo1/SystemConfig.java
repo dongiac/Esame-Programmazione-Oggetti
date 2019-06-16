@@ -18,13 +18,13 @@ public class SystemConfig {
 		return new MetaSet();
 	}
 	@Bean
-	public HashSet<RadioStation> radioList() throws IOException {
+	public Collection<RadioStation> radioList() throws IOException {
 		HashSet<RadioStation> set = new HashSet<RadioStation>();
 		Utils.parseCSV(set);
 		return set;
 	}
 	@Bean 
-	public HashSet<MetaData> metaList() throws ClassNotFoundException, IOException {
+	public Collection<MetaData> metaList() throws ClassNotFoundException, IOException {
 		HashSet<MetaData> set = new HashSet<MetaData>();
 		Utils.parseMetaData(set);
 		return set;

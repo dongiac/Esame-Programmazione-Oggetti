@@ -1,8 +1,5 @@
 package com.example.demo1;
 
-import java.io.IOException;
-import java.util.HashSet;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,7 +7,7 @@ public class MetaSet extends Data <MetaData> {
 	public MetaSet() {
 		
 	}
-	
+	/*
 	@Override
 	public void parseData() {
 		try {
@@ -21,6 +18,6 @@ public class MetaSet extends Data <MetaData> {
 		}
 		
 	}
-	
+	*/
 }
 	

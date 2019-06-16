@@ -28,6 +28,8 @@ public class Controller1 {
 	@RequestMapping("/metadata")
 	@ResponseBody
 	public HashSet<MetaData> getMetaSet() throws IOException, ClassNotFoundException {
+		
 		return (HashSet<MetaData>) ms.getData();
 	}
+	
 }
