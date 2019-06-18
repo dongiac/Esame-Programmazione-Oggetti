@@ -45,7 +45,7 @@ public class ParseUtils {
 			}
 
 		}
-		// return set;
+		in.close();
 	}
 
 	public static String commaConverter(String a) {
@@ -111,7 +111,7 @@ public class ParseUtils {
 	}
 
 	public static HashSet<MetaData> parseMetaData(HashSet<MetaData> set) throws ClassNotFoundException, IOException {
-		Class cls = Class.forName("com.example.demo1.RadioStation"); // sarebbe meglio generalizzarla cosÃƒÂ¬ da prendere
+		Class cls = Class.forName("com.example.demo1.RadioStation"); // sarebbe meglio generalizzarla così da prendere
 																		// metadata eventualmente da ogni set di
 																		// oggetti!!!
 		FileReader file = new FileReader("t1.csv");
@@ -129,6 +129,7 @@ public class ParseUtils {
 			metadata.setSourceField(info[i]);
 			set.add(metadata);
 		}
+		in.close();
 		return set;
 	}
 }

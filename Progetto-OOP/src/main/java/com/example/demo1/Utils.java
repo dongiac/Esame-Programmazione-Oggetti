@@ -8,6 +8,6 @@ public class Utils<T> {
 	@Autowired
 	FilterUtils<T> filterutils;
 	@Autowired
-	MathUtils mathutils;
+	MathUtils<T> mathutils;
 	ParseUtils parseutils;
 }

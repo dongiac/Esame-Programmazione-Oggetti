@@ -1,9 +1,9 @@
 package com.example.demo1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
-import org.json.simple.JSONObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -25,31 +25,26 @@ public class Controller1 {
 
 	@PostMapping("/data")
 	@ResponseBody
-	public HashSet<RadioStation> getRadioSet(@RequestBody FieldParamAll filterParams) throws IOException {
-
-		return (HashSet<RadioStation>) rs.filterField(filterParams);
+	public ArrayList<RadioStation> getRadioSet(@RequestBody FieldParamAll filterParams) throws IOException {
+		return rs.filterField(filterParams);
 	}
 
 	@GetMapping("/data")
 	@ResponseBody
-	public HashSet<RadioStation> getRadioSet() throws IOException {
-		return (HashSet<RadioStation>) rs.getData();
+	public ArrayList<RadioStation> getRadioSet() throws IOException {
+		return (ArrayList<RadioStation>) rs.getData();
 	}
 
 	@RequestMapping("/metadata")
 	@ResponseBody
 	public HashSet<MetaData> getMetaSet() throws IOException, ClassNotFoundException {
-
 		return (HashSet<MetaData>) ms.getData();
-	}
-
-	@RequestMapping("/filter")
-	public HashSet<RadioStation> filtraggio(@RequestParam("filter") JSONObject filter) {
-		return null;
 	}
 
 	@RequestMapping("/stats")
 	public MathStatsResults getMathStats(@RequestParam("fieldName") String fieldName) {
 		return rs.compute(fieldName);
 	}
+	
+	
 }

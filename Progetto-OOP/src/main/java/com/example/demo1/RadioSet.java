@@ -1,8 +1,7 @@
 package com.example.demo1;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,9 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>
 	}
 
 	@Override
-	public HashSet<RadioStation> filterField(FieldParamAll filterParam) {
+	public ArrayList<RadioStation> filterField(FieldParamAll filterParam) {
 		try {
-			return (HashSet<RadioStation>) utils.filterutils.select((HashSet<RadioStation>)this.set, filterParam.getFieldName(),
+			return (ArrayList<RadioStation>) utils.filterutils.select(this.set, filterParam.getFieldName(),
 					filterParam.fieldParam.getOperator(), filterParam.fieldParam.getValue());
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
@@ -34,10 +33,4 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>
 	public MathStatsResults compute(String fieldName) {
 		return utils.mathutils.calculateStats(this.set, fieldName);
 	}
-
-	/*
-	 * @Override public void parseData() { try {
-	 * Utils.parseCSV((HashSet<RadioStation>) this.set); } catch (IOException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } }
-	 */
 }

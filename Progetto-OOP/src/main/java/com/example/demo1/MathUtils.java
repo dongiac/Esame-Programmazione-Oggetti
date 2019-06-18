@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class MathUtils { 
-	public MathStatsResults calculateStats(Collection<RadioStation> src, String fieldName) {
+public class MathUtils<T> { 
+	public MathStatsResults calculateStats(Collection<T> src, String fieldName) {
 		MathStatsResults m1 = new MathStatsResults();
 		m1.setField(fieldName);
 		ArrayList<Double> tmp = new ArrayList<Double>();
-		for (RadioStation item : src) {
+		for (T item : src) {
 			try {
 				Method m = item.getClass()
 						.getMethod("get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1), null);

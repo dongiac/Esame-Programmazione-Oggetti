@@ -1,7 +1,7 @@
 package com.example.demo1;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public interface Filter<E> {
-	abstract HashSet<E> filterField(FieldParamAll filterParams);
+	abstract ArrayList<E> filterField(FieldParamAll filterParams);
 }

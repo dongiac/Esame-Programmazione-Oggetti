@@ -7,18 +7,6 @@ public class MetaSet extends Data <MetaData> {
 	public MetaSet() {
 		
 	}
-	/*
-	@Override
-	public void parseData() {
-		try {
-			Utils.parseMetaData((HashSet<MetaData>)this.set);
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	*/
 }
 	
 	

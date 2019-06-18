@@ -2,19 +2,16 @@ package com.example.demo1;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
 public class FilterUtils<T> {
 
 	public static boolean check(Object value, String operator, Object th) {
-		System.out.println("value: " + value.getClass().getName());
-		System.out.println("th: " + th.getClass().getName());
 
 		try {
 			double thC = Double.parseDouble(th.toString());
-			System.out.println("il valore è un numero!");
-
 			Double valuec = ((Number) value).doubleValue();
 			if (operator.equals("=="))
 				return value.equals(th);
@@ -23,18 +20,15 @@ public class FilterUtils<T> {
 			else if (operator.equals("<"))
 				return valuec < thC;
 		} catch (NumberFormatException e) {
-			System.out.println("il valore è una stringa!");
 			return value.equals(th);
 		}
-
-		System.out.println("tale oggetto non soddisfa i requisiti");
 		return false;
 	}
 
-	public Collection<T> select(HashSet<T> src, String fieldName, String operator, Object[] value)
+	public Collection<T> select(Collection<T> src, String fieldName, String operator, Object[] value)
 			throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		Collection<T> out = new HashSet<T>();
+		Collection<T> out = new ArrayList<T>();;
 		switch (operator) {
 		case "$or":
 			for (T item : src) {
