@@ -10,7 +10,7 @@ public class Data<T> {
 	@Autowired
 	Collection<T> set; 
 	@Autowired
-	FilterUtils<T> utils;
+	Utils<T> utils;
 	
 	
 	/*

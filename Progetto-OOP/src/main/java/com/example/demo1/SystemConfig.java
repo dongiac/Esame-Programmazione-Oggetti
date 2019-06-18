@@ -22,14 +22,14 @@ public class SystemConfig {
 	@Bean
 	public Collection<RadioStation> radioList() throws IOException {
 		HashSet<RadioStation> set = new HashSet<RadioStation>();
-		Utils.parseCSV(set);
+		ParseUtils.parseCSV(set);
 		return set;
 	}
 
 	@Bean
 	public Collection<MetaData> metaList() throws ClassNotFoundException, IOException {
 		HashSet<MetaData> set = new HashSet<MetaData>();
-		Utils.parseMetaData(set);
+		ParseUtils.parseMetaData(set);
 		return set;
 	}
 
@@ -37,5 +37,15 @@ public class SystemConfig {
 	public FilterUtils utilities() {
 		System.out.println("creo Utils");
 		return new FilterUtils();
+	}
+	
+	@Bean
+	public MathUtils mathutils() {
+		return new MathUtils();
+	}
+	
+	@Bean
+	public Utils myUtils() {
+		return new Utils();
 	}
 }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RadioSet extends Data<RadioStation> implements Filter<RadioStation> {
+public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>, Stats {
 	public RadioSet() {
 
 	}
@@ -18,9 +18,9 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>
 	}
 
 	@Override
-	public HashSet<RadioStation> filterField(Collection<RadioStation> set, FieldParamAll filterParam) {
+	public HashSet<RadioStation> filterField(FieldParamAll filterParam) {
 		try {
-			return (HashSet<RadioStation>) this.utils.select((HashSet<RadioStation>) set, filterParam.getFieldName(),
+			return (HashSet<RadioStation>) utils.filterutils.select((HashSet<RadioStation>)this.set, filterParam.getFieldName(),
 					filterParam.fieldParam.getOperator(), filterParam.fieldParam.getValue());
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
@@ -28,6 +28,11 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public MathStatsResults compute(String fieldName) {
+		return utils.mathutils.calculateStats(this.set, fieldName);
 	}
 
 	/*

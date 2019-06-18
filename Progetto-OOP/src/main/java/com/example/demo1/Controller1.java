@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +27,7 @@ public class Controller1 {
 	@ResponseBody
 	public HashSet<RadioStation> getRadioSet(@RequestBody FieldParamAll filterParams) throws IOException {
 
-		return (HashSet<RadioStation>) rs.filterField(rs.getData(), filterParams);
+		return (HashSet<RadioStation>) rs.filterField(filterParams);
 	}
 
 	@GetMapping("/data")
@@ -51,9 +50,6 @@ public class Controller1 {
 
 	@RequestMapping("/stats")
 	public MathStatsResults getMathStats(@RequestParam("fieldName") String fieldName) {
-		MathStatsResults stats = new MathStatsResults();
-		stats.setField(fieldName);
-		stats.compute(rs.set, fieldName);
-		return stats;
+		return rs.compute(fieldName);
 	}
 }
