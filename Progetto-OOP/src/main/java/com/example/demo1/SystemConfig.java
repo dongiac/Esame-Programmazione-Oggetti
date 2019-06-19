@@ -1,8 +1,6 @@
 package com.example.demo1;
-
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,23 +17,24 @@ public class SystemConfig {
 		return new MetaSet();
 	}
 
+	
 	@Bean
-	public Collection<RadioStation> radioList() throws IOException {
-		HashSet<RadioStation> set = new HashSet<RadioStation>();
-		ParseUtils.parseCSV(set);
-		return set;
-	}
-
-	@Bean
-	public Collection<MetaData> metaList() throws ClassNotFoundException, IOException {
-		HashSet<MetaData> set = new HashSet<MetaData>();
+	public ArrayList<MetaData> metaList() throws ClassNotFoundException, IOException {
+		ArrayList<MetaData> set = new ArrayList<MetaData>();
 		ParseUtils.parseMetaData(set);
 		return set;
 	}
-
+	
+	
+	@Bean
+	public ArrayList<RadioStation> radioList() throws ClassNotFoundException, IOException {
+		ArrayList<RadioStation> set = new ArrayList<RadioStation>();
+		ParseUtils.parseCSV(set);
+		return set;
+	}
+	
 	@Bean
 	public FilterUtils utilities() {
-		System.out.println("creo Utils");
 		return new FilterUtils();
 	}
 	

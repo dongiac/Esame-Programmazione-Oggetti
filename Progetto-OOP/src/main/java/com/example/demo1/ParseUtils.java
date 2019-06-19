@@ -1,5 +1,4 @@
 package com.example.demo1;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.net.URLConnection;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,7 +22,7 @@ public class ParseUtils {
 	
 	public static final String COMMA_DELIMITER = ";";
 
-	public static void parseCSV(HashSet<RadioStation> set) throws IOException {
+	public static void parseCSV(ArrayList<RadioStation> set) throws IOException {
 		FileReader a = new FileReader("t1.csv");
 		BufferedReader in = new BufferedReader(a);
 		String line = "";
@@ -110,7 +109,7 @@ public class ParseUtils {
 		return data;
 	}
 
-	public static HashSet<MetaData> parseMetaData(HashSet<MetaData> set) throws ClassNotFoundException, IOException {
+	public static ArrayList<MetaData> parseMetaData(ArrayList<MetaData> set) throws ClassNotFoundException, IOException {
 		Class cls = Class.forName("com.example.demo1.RadioStation"); // sarebbe meglio generalizzarla così da prendere
 																		// metadata eventualmente da ogni set di
 																		// oggetti!!!
@@ -119,7 +118,7 @@ public class ParseUtils {
 		String line = "";
 		line = in.readLine();
 		String[] info = line.split(";");
-		java.lang.reflect.Field[] fieldlist = cls.getDeclaredFields();
+		Field[] fieldlist = cls.getDeclaredFields();
 		MetaData metadata;
 		for (int i = 0; i < info.length; i++) {
 			Field fld = fieldlist[i];

@@ -1,8 +1,9 @@
 package com.example.demo1;
 
 public class FieldParamAll {
+	String fieldNames[];
 	String fieldName;
-	FieldParam fieldParam;
+	public FieldParam fieldParam;
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -16,6 +17,18 @@ public class FieldParamAll {
 	 * 
 	 */
 	public FieldParamAll() {
+	}
+	/**
+	 * @return the fieldNames
+	 */
+	public String[] getFieldNames() {
+		return fieldNames;
+	}
+	/**
+	 * @param fieldNames the fieldNames to set
+	 */
+	public void setFieldNames(String[] fieldNames) {
+		this.fieldNames = fieldNames;
 	}
 	/**
 	 * @param fieldName

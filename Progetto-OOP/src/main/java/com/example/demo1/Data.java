@@ -1,13 +1,13 @@
 package com.example.demo1;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class Data<T> {
 	@Autowired
-	Collection<T> set; 
+	ArrayList<T> set; 
 	@Autowired
 	Utils<T> utils;
 	
@@ -31,10 +31,7 @@ public class Data<T> {
 	}
 
 	public Collection<T> getData() {
-		return this.set; // sarà sufficiente fare un cast dove serve
+		return this.set;
 	}
-
-	
-	//public abstract void parseData();
 
 }

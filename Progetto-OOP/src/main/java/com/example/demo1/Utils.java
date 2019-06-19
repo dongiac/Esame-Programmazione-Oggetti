@@ -6,8 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Utils<T> {
 	@Autowired
+	public
 	FilterUtils<T> filterutils;
 	@Autowired
+	public
 	MathUtils<T> mathutils;
-	ParseUtils parseutils;
+	ParseUtils parseutils; //essendo fatta di metodi static non necessita di essere istanziata...
 }
