@@ -21,7 +21,7 @@ public class SystemConfig {
 	@Bean
 	public ArrayList<MetaData> metaList() throws ClassNotFoundException, IOException {
 		ArrayList<MetaData> set = new ArrayList<MetaData>();
-		ParseUtils.parseMetaData(set, args[1]);
+		ParseUtils.parseMetaData(set);
 		return set;
 	}
 	
@@ -29,7 +29,7 @@ public class SystemConfig {
 	@Bean
 	public ArrayList<RadioStation> radioList() throws ClassNotFoundException, IOException {
 		ArrayList<RadioStation> set = new ArrayList<RadioStation>();
-		ParseUtils.parseCSV(set, args[1]);
+		ParseUtils.parseCSV(set);
 		return set;
 	}
 	

@@ -1,17 +1,14 @@
 package com.example.demo1;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.json.simple.JSONObject;
-
 public class MathUtils<T> { 
-	public Object calculateStats(Collection<T> src, String fieldName) {
-		JSONObject m1 = new JSONObject();
-		m1.put("field",fieldName);
+	public MathStatsResults calculateStats(Collection<T> src, String fieldName) {
+		MathStatsResults m1 = new MathStatsResults();
+		m1.setField(fieldName);
 		ArrayList<Double> tmp = new ArrayList<Double>();
 		for (T item : src) {
 			try {
@@ -31,11 +28,11 @@ public class MathUtils<T> {
 			}
 
 		}
-		m1.put("avg", average(tmp));
-		m1.put("min",min(tmp));
-		m1.put("max",max(tmp));
-		m1.put("std", std(tmp));
-		m1.put("count", count(tmp));
+		m1.setAvg(average(tmp));
+		m1.setMin(min(tmp));
+		m1.setMax(max(tmp));
+		m1.setStd(std(tmp));
+		m1.setCount(count(tmp));
 		return m1;
 	}
 	
@@ -63,6 +60,7 @@ public class MathUtils<T> {
 		double media = average(src);
 		for (Double item : src) {
 			val = val + Math.pow((item - media), 2);
+			System.out.println(val);
 		}
 		return (Math.sqrt(val / n));
 	}
@@ -74,28 +72,4 @@ public class MathUtils<T> {
 		return count;
 	}
 	
-	public Object wordsCount(Collection<T> src, String word) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		int countContain = 0;
-		int countEquals = 0;
-		String o;
-		Class c = Class.forName("com.example.demo1.RadioStation");
-		Method[] m  = c.getDeclaredMethods();
-		for(T item : src) {
-			for(int i = 0; i<m.length; i++) {
-				if(m[i].getName().startsWith("get")) {
-				o = (m[i].invoke(item, null)).toString();
-				if(o.contains(word)) //non viene effettuato il controllo se il metodo get apposito non esiste.
-					countContain++;
-				if(o.equals(word))
-					countEquals++;
-				}
-			}
-		}
-		//deve ciclare tutti gli elementi presi con getattributo1,2...
-		JSONObject object = new JSONObject();
-		object.put("word", word);
-		object.put("count contains", countContain);
-		object.put("count equals", countEquals);
-		return object;
-	}
 }

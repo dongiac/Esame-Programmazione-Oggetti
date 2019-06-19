@@ -1,11 +1,10 @@
 package com.example.demo1;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.springframework.stereotype.Component;
 @Component
-public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>, Stats<RadioStation> {
+public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>, Stats {
 	public RadioSet() {
 		
 	}
@@ -29,7 +28,7 @@ public class RadioSet extends Data<RadioStation> implements Filter<RadioStation>
 	}
 
 	@Override
-	public Object compute(ArrayList<RadioStation> src, String fieldName) {
-		return utils.mathutils.calculateStats(src, fieldName);
+	public MathStatsResults compute(String fieldName) {
+		return utils.mathutils.calculateStats(this.set, fieldName);
 	}
 }

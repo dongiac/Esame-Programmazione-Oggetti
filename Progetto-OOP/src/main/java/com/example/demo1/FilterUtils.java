@@ -101,38 +101,20 @@ public class FilterUtils<T> {
 
 	private boolean checkSpecsOR(T item, String fieldNames[], Object[] values) throws NoSuchMethodException,
 			SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-
-		ArrayList<Method> methodArrayList = new ArrayList<Method>(fieldNames.length);
-		Method m;
-		for (int i = 0; i < fieldNames.length; i++) {
-			m = item.getClass()
-					.getMethod("get" + fieldNames[i].substring(0, 1).toUpperCase() + fieldNames[i].substring(1), null);
-			methodArrayList.add(m);
-		}
-
-		ArrayList<Object> tmpArrayList = new ArrayList<Object>();
-
-		for (int i = 0; i < methodArrayList.size(); i++) {
-			tmpArrayList.add(methodArrayList.get(i).invoke(item, null));
-			if ((((tmpArrayList.get(i)).toString()).equals(values[i].toString())))
-				return true;
-		}
-		return false;
-
-		/*
-		 * Method m0 = item.getClass() .getMethod("get" + fieldNames[0].substring(0,
-		 * 1).toUpperCase() + fieldNames[0].substring(1), null); Method m1 =
-		 * item.getClass() .getMethod("get" + fieldNames[1].substring(0,
-		 * 1).toUpperCase() + fieldNames[1].substring(1), null); Object tmp0 =
-		 * m0.invoke(item, null); Object tmp1 = m1.invoke(item, null);
-		 * 
-		 * System.out.println(tmp0.toString()); System.out.println(tmp1.toString());
-		 * System.out.println(values[0].toString());
-		 * System.out.println(values[1].toString()); if
-		 * ((tmp0.toString().equals(values[0].toString())) ||
-		 * (tmp1.toString().equals(values[1].toString()))) return true; else return
-		 * false;
-		 */
+		Method m0 = item.getClass()
+				.getMethod("get" + fieldNames[0].substring(0, 1).toUpperCase() + fieldNames[0].substring(1), null);
+		Method m1 = item.getClass()
+				.getMethod("get" + fieldNames[1].substring(0, 1).toUpperCase() + fieldNames[1].substring(1), null);
+		Object tmp0 = m0.invoke(item, null);
+		Object tmp1 = m1.invoke(item, null);
+		System.out.println(tmp0.toString());
+		System.out.println(tmp1.toString());
+		System.out.println(values[0].toString());
+		System.out.println(values[1].toString());
+		if ((tmp0.toString().equals(values[0].toString())) || (tmp1.toString().equals(values[1].toString())))
+			return true;
+		else
+			return false;
 	}
 
 }

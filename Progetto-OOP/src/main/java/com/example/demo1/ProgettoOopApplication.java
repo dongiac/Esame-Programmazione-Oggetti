@@ -6,15 +6,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProgettoOopApplication {
 
 	public static void main(String[] args) throws Exception {
-		//String url = "https://www.dati.gov.it/api/3/action/package_show?id=7fae4996-02e1-4a80-8794-9ec22454041b";
-		String url = args[0];
+		String url = "https://www.dati.gov.it/api/3/action/package_show?id=7fae4996-02e1-4a80-8794-9ec22454041b";
 		String data = "";
 		String csvUrl;
 		data = ParseUtils.jsonToString(url); // Converte il
 		csvUrl = ParseUtils.getCSVUrl(data);
-		ParseUtils.download(csvUrl, args[1]); // scarica il csv
+		ParseUtils.download(csvUrl); // scarica il csv
 		
-		SpringApplication.run(ProgettoOopApplication.class, args); 
+		SpringApplication.run(ProgettoOopApplication.class, args);
+
 	}
-	
+
 }
