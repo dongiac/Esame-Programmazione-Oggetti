@@ -1,5 +1,6 @@
 package com.example.demo1;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
@@ -48,7 +49,21 @@ public class Controller1 {
 	}
 
 	@RequestMapping("/stats")
-	public MathStatsResults getMathStats(@RequestParam("fieldName") String fieldName) {
-		return rs.compute(fieldName);
+	public Object getMathStats(@RequestParam("fieldName") String fieldName) {
+		return rs.compute((ArrayList<RadioStation>)rs.getData(), fieldName);
 	}
+	
+	@PostMapping("/stats")
+	public Object getFilteredMathStats(@RequestBody JSONObject object) {
+		Gson g = new GsonBuilder().create();
+		FieldParamAll field = g.fromJson(object.toJSONString(), FieldParamAll.class);
+		return rs.compute(rs.filterField(field), field.getFieldName());
+	}
+	
+	@RequestMapping("/wordstats")
+	public Object getWordsStats(@RequestParam("word") String word) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		return  rs.utils.mathutils.wordsCount(rs.getData(), word);
+	}
+	
+	
 }

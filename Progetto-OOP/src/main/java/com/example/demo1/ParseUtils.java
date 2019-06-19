@@ -22,8 +22,8 @@ public class ParseUtils {
 	
 	public static final String COMMA_DELIMITER = ";";
 
-	public static void parseCSV(ArrayList<RadioStation> set) throws IOException {
-		FileReader a = new FileReader("t1.csv");
+	public static void parseCSV(ArrayList<RadioStation> set, String nameFile) throws IOException {
+		FileReader a = new FileReader(nameFile);
 		BufferedReader in = new BufferedReader(a);
 		String line = "";
 		String[] info;
@@ -81,13 +81,13 @@ public class ParseUtils {
 		return URL;
 	}
 
-	public static void download(String url) throws Exception {
+	public static void download(String url, String nameFile) throws Exception {
 
 		try (InputStream in = URI.create(url).toURL().openStream()) {
 			System.out.println("salvo con nome 't1.csv'");
 			Files.copy(in, Paths.get("t1.csv"));
 		} catch (FileAlreadyExistsException a) {
-			System.out.println("il file con il nome t1.csv verrÃƒÂ  sovrascritto");
+			System.out.println("il file con il nome t1.csv verrà  sovrascritto");
 		}
 	}
 
@@ -109,11 +109,11 @@ public class ParseUtils {
 		return data;
 	}
 
-	public static ArrayList<MetaData> parseMetaData(ArrayList<MetaData> set) throws ClassNotFoundException, IOException {
+	public static ArrayList<MetaData> parseMetaData(ArrayList<MetaData> set, String nameFile) throws ClassNotFoundException, IOException {
 		Class cls = Class.forName("com.example.demo1.RadioStation"); // sarebbe meglio generalizzarla così da prendere
 																		// metadata eventualmente da ogni set di
 																		// oggetti!!!
-		FileReader file = new FileReader("t1.csv");
+		FileReader file = new FileReader(nameFile);
 		BufferedReader in = new BufferedReader(file);
 		String line = "";
 		line = in.readLine();
