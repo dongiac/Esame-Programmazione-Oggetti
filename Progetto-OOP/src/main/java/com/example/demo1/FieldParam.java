@@ -7,9 +7,6 @@ import java.util.Arrays;
  *
  */
 public class FieldParam {
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	/**
 	 * Operator used in the filter. Values allowed: "$bt", "$gt", "$or", "$not".
 	 */

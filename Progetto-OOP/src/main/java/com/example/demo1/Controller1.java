@@ -1,4 +1,5 @@
 package com.example.demo1;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -30,19 +31,23 @@ public class Controller1 {
 	/**
 	 * Gets the RadioSet bean parsing the data at startup
 	 */
-	RadioSet rs = ctx1.getBean(RadioSet.class); 
+	RadioSet rs = ctx1.getBean(RadioSet.class);
 	/**
 	 * Gets the MetaSet bean parsing the metadata at startup
 	 */
-	MetaSet ms = ctx1.getBean(MetaSet.class); 
+	MetaSet ms = ctx1.getBean(MetaSet.class);
 
 	/**
-	 * This method filters the RadioStation data set with a POST request containing the necessary parameters which are put in a JSONObject class object.
-	 * The attributes in the JSONObject class object must be coherent with the class FieldParamAll, otherwise, will be returned an exception.
-	 * If some attributes are missing or wrong, will be returned a JSONObject object containing info about the error.
+	 * This method filters the RadioStation data set with a POST request containing
+	 * the necessary parameters which are put in a JSONObject class object. The
+	 * attributes in the JSONObject class object must be coherent with the class
+	 * FieldParamAll, otherwise, will be returned an exception. If some attributes
+	 * are missing or wrong, will be returned a JSONObject object containing info
+	 * about the error.
+	 * 
 	 * @param object Object that will contain parameters for the data filter.
 	 * @return Returns a filtered ArrayList of RadioStation Objects.
-	 * @throws IOException  
+	 * @throws IOException
 	 */
 	@PostMapping("/data")
 	@ResponseBody
@@ -51,24 +56,29 @@ public class Controller1 {
 		FieldParamAll field = g.fromJson(object.toJSONString(), FieldParamAll.class);
 		return rs.filterField(field);
 	}
-	
+
 	/**
-	 * This method allows to get after a GET request a ArrayList of RadioStation objects containing the entire Data set.
-	 * @return ArrayList of RadioStation class objects containing the parsed data set.
+	 * This method allows to get after a GET request a ArrayList of RadioStation
+	 * objects containing the entire Data set.
+	 * 
+	 * @return ArrayList of RadioStation class objects containing the parsed data
+	 *         set.
 	 * @throws IOException
 	 */
 	@GetMapping("/data")
 	@ResponseBody
 	public ArrayList<RadioStation> getRadioSet() throws IOException {
-		
+
 		return (ArrayList<RadioStation>) rs.getData();
 	}
-	
+
 	/**
-	 * This method allows to get after a GET request a ArrayList of MetaData class objects containing all the metadata.
+	 * This method allows to get after a GET request a ArrayList of MetaData class
+	 * objects containing all the metadata.
+	 * 
 	 * @return ArrayList of MetaData class objects containing the metadata.
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
 	 */
 
 	@RequestMapping("/metadata")
@@ -78,18 +88,23 @@ public class Controller1 {
 	}
 
 	/**
-	 * This method allows to get math stats for a certain field name (fieldName) after a GET request.
+	 * This method allows to get math stats for a certain field name (fieldName)
+	 * after a GET request.
+	 * 
 	 * @param fieldName The name of the field we want to get stats from
 	 * @return Object containing all the math stats for the field
 	 */
-	
+
 	@RequestMapping("/stats")
 	public Object getMathStats(@RequestParam("fieldName") String fieldName) {
-		return rs.compute((ArrayList<RadioStation>)rs.getData(), fieldName);
+		return rs.compute((ArrayList<RadioStation>) rs.getData(), fieldName);
 	}
-	
+
 	/**
-	 * This method filters the RadioStation data set a with a POST request containing the necessary parameters which are put in a JSONObject class object.
+	 * This method filters the RadioStation data set a with a POST request
+	 * containing the necessary parameters which are put in a JSONObject class
+	 * object.
+	 * 
 	 * @param object The object that will contain the parameters.
 	 * @return Object containing the stats calculated from the filtered data set.
 	 * @throws NoSuchMethodException
@@ -97,19 +112,19 @@ public class Controller1 {
 	@PostMapping("/stats")
 	public Object getFilteredMathStats(@RequestBody JSONObject object) throws NoSuchMethodException {
 		Gson g = new GsonBuilder().create();
-		//try {
+
 		FieldParamAll field = g.fromJson(object.toJSONString(), FieldParamAll.class);
-		//}catch(IllegalStateException e) {
-			//qui ci va il caso che l'utente ha inserito parameters ma non le graffe, oppure parameter ma ha messo le graffe, oppure value con graffe, oppure values senza graffe, non so come implementarlo
-		//}
+
 		ArrayList<RadioStation> rsf = rs.filterField(field);
-		
+
 		return rs.compute(rsf, field.getFieldName());
-		
+
 	}
-	
+
 	/**
-	 * This method calculates all the recurrences of word which contain, or equal, a certain word passed with a GET request.
+	 * This method calculates all the recurrences of word which contain, or equal, a
+	 * certain word passed with a GET request.
+	 * 
 	 * @param word The word which we want to calculate the recurrence.
 	 * @return Object containing the word stats.
 	 * @throws ClassNotFoundException
@@ -117,11 +132,11 @@ public class Controller1 {
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
 	 */
-	
+
 	@RequestMapping("/wordstats")
-	public Object getWordsStats(@RequestParam("word") String word) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		return  rs.utils.mathutils.wordsCount(rs.getData(), word);
+	public Object getWordsStats(@RequestParam("word") String word)
+			throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		return rs.utils.mathutils.wordsCount(rs.getData(), word);
 	}
-	
-	
+
 }

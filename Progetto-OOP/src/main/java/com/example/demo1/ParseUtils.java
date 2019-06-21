@@ -47,7 +47,7 @@ public class ParseUtils {
 			info = line.split(COMMA_DELIMITER);
 			try {
 
-				r = new RadioStation(info[0], info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8],
+				r = new RadioStation(info[0], info[1], info[2], info[3], info[4], info[5], info[6], ParseUtils.commaConverter(info[7]), info[8],
 						ParseUtils.commaConverter(info[9]), ParseUtils.commaConverter(info[10]),
 						ParseUtils.commaConverter(info[11]));
 				set.add(r);

@@ -1,6 +1,5 @@
 package com.example.demo1;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,35 +29,36 @@ public class MathUtils<T> {
 		}
 		JSONObject m1 = new JSONObject();
 		m1.put("field", fieldName);
-		System.out.println("il numero di valori filtrati è " +src.size());
+		System.out.println("il numero di valori è " +src.size());
 		ArrayList<Double> tmp = new ArrayList<Double>();
 		if(src.size() == 0)
 			m1.put("Errore", "Non ci sono oggetti che soddisfano i requisiti inseriti");
 		for (T item : src) {
 			try {
+				
 				Method m = item.getClass()
 						.getMethod("get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1), null);
 				try {
-					if (((double) (m.invoke(item))) != 0)
+					System.out.println(m.invoke(item));
+					if ((((Double) (m.invoke(item)))) != 0)
 						tmp.add((Double) (m.invoke(item)));
 
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 					e.printStackTrace();
 				}
-				
-				m1.put("avg", average(tmp));
-				m1.put("min", min(tmp));
-				m1.put("max", max(tmp));
-				m1.put("std", std(tmp));
-				m1.put("count", count(tmp));
-				
+				System.out.println(tmp.toString());
+			
 			} catch (NoSuchMethodException e) {
-				m1.put("Errore", "Il campo inserito e/o l'operatore non sono validi test");
+				m1.put("Errore", "Il campo inserito e/o l'operatore non sono validi");
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			}
 		}
-		
+		m1.put("avg", average(tmp));
+		m1.put("min", min(tmp));
+		m1.put("max", max(tmp));
+		m1.put("std", std(tmp));
+		m1.put("count", count(tmp));
 		System.out.println("ritorno m1");
 		return m1;
 	}
