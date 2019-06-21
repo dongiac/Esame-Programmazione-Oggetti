@@ -1,10 +1,23 @@
 package com.example.demo1;
-
+/**
+ * 
+ * Class containing attributes of metadata parsed by the csv.
+ *
+ */
 public class MetaData {
-	protected String alias;
-	protected String sourceField;
-	protected String type;
 	/**
+	 * alias
+	 */
+	protected String alias;
+	/**
+	 * sourceField
+	 */
+	protected String sourceField;
+	/**
+	 * type
+	 */
+	protected String type;
+	/**Constructor
 	 * @param alias
 	 * @param sourceField
 	 * @param type
@@ -15,7 +28,7 @@ public class MetaData {
 		this.type = type;
 	}
 	/**
-	 * 
+	 * Constructor
 	 */
 	public MetaData() {
 	}

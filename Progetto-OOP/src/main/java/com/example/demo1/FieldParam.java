@@ -1,14 +1,28 @@
 package com.example.demo1;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * This class contains other info for the filter method
+ *
+ */
 public class FieldParam {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	
+	/**
+	 * Operator used in the filter. Values allowed: "$bt", "$gt", "$or", "$not".
+	 */
 	String operator;
+	/**
+	 * Array of objects containing the values used in the filter: to be used with conditional filters or with "$bt" filter.
+	 * In other cases this must be left empty.
+	 */
 	Object[] values;
+	/**
+	 * Object containing the value used in the filter: to be used exclusively with "$gt" filter.
+	 * In othercases this must be left empty.
+	 */
 	Object value;
 	/**
 	 * @return the operator

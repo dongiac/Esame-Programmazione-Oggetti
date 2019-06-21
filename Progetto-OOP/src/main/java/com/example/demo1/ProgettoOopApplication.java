@@ -1,7 +1,12 @@
 package com.example.demo1;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+/**
+ * Spring boot application class containing the main class.
+ * @author 
+ *
+ */
 @SpringBootApplication
 public class ProgettoOopApplication {
 
@@ -10,11 +15,10 @@ public class ProgettoOopApplication {
 		String url = args[0];
 		String data = "";
 		String csvUrl;
-		data = ParseUtils.jsonToString(url); // Converte il
+		data = ParseUtils.jsonToString(url);
 		csvUrl = ParseUtils.getCSVUrl(data);
-		ParseUtils.download(csvUrl, args[1]); // scarica il csv
-		
-		SpringApplication.run(ProgettoOopApplication.class, args); 
-	}
-	
+		ParseUtils.download(csvUrl);
+		SpringApplication.run(ProgettoOopApplication.class, args);
+	} 
+
 }

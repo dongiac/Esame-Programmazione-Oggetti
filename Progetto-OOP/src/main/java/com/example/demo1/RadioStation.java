@@ -1,17 +1,56 @@
 package com.example.demo1;
-
+/**
+ * Class containing attributes of a single radio station parsed by the csv.
+ *
+ */
 public class RadioStation {
+	/**
+	 * operator 
+	 */
 	protected String operator;
+	/**
+	 * ID
+	 */
 	protected String ID;
+	/**
+	 * type
+	 */
 	protected String type;
+	/**
+	 * address
+	 */
 	protected String address;
+	/**
+	 * lat
+	 */
 	protected String lat;
+	/**
+	 * lon
+	 */
 	protected String lon;
+	/**
+	 * alt
+	 */
 	protected String alt;
+	/**
+	 * channel
+	 */
 	protected double channel;
+	/**
+	 * bouquet
+	 */
 	protected String bouquet;
+	/**
+	 * erpMaxH
+	 */
 	protected double erpMaxH;
+	/**
+	 * erpMaxV
+	 */
 	protected double erpMaxV;
+	/**
+	 * freq
+	 */
 	protected double freq;
 
 	/**
@@ -194,7 +233,7 @@ public class RadioStation {
 		this.freq = freq;
 	}
 
-	/**
+	/**Constructor
 	 * @param operator
 	 * @param iD
 	 * @param type
@@ -240,7 +279,7 @@ public class RadioStation {
 	}
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public RadioStation() {
 	}
