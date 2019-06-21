@@ -5,7 +5,7 @@ This ReadMe is an explenation file of the project.
  
 All started with the creation of the _Use-Case diagram_, to visualize what the required specifics for the application were.
 
- [Use-Case Diagram](Use-Case final.png)
+ [Use-Case Diagram](https://github.com/dongiac/Esame-Programmazione-Oggetti/blob/master/Use-Case%20final.png)
  
  The second step, was to create the _Class Diagram_ to visualize all the relationship between Classes, Interfaces and Abstract Classes.
  
