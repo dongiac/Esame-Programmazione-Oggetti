@@ -9,7 +9,7 @@ All started with the creation of the _Use-Case diagram_, to visualize what the r
  
  The second step, was to create the _Class Diagram_ to visualize all the relationship between Classes, Interfaces and Abstract Classes.
  
- [Class Diagram](some link)
+ [Class Diagram](https://github.com/dongiac/Esame-Programmazione-Oggetti/blob/master/UML%20diagram%20ProgettoOOP.png)
  
 # The Project
 ### Application Start
